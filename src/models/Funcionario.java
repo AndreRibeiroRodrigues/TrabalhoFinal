@@ -3,6 +3,8 @@ package models;
 public class Funcionario extends Pessoa {
     private double salario;
     private String setor;
+    private String dataInicio;
+    private String dataFim;
 
     public Funcionario(String nome, int idade, char sexo, double salario, String setor) {
         super(nome, idade, sexo);
@@ -39,5 +41,21 @@ public class Funcionario extends Pessoa {
     @Override
     public String toString() {
         return super.toString() + "\nsalario: " + salario;
+    }
+
+    public String getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(String dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public String getDataFim() {
+        return dataFim;
+    }
+
+    public void setDataFim(String dataFim) {
+        this.dataFim = dataFim;
     }
 }
