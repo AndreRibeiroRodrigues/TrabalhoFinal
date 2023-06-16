@@ -1,13 +1,10 @@
 package models;
 
-
 public class Funcionario extends Pessoa {
     private double salario;
     private String setor;
     private String dataInicio;
     private String dataFim;
-
-
 
     public Funcionario(String nome, int idade, char sexo, double salario, String setor) {
         super(nome, idade, sexo);
@@ -61,11 +58,16 @@ public class Funcionario extends Pessoa {
     public void setDataFim(String dataFim) {
         this.dataFim = dataFim;
     }
-    // public int anoEmpregado() {
-    //     if(this.dataFim == null){
 
-    //     }else{
-           
-    //     }
-    // }
+    public int anoEmpregado() {
+        if (this.dataFim == null) {
+            return 0;
+        } else {
+            String[] vetDataFim = this.getDataFim().split("/");
+            String[] vetDataInicio = this.getDataInicio().split("/");
+            String anoInicio = vetDataInicio[2];
+            String anoFim = vetDataFim[2];
+            return Integer.parseInt(anoFim) + Integer.parseInt(anoInicio);
+        }
+    }
 }
