@@ -1,6 +1,5 @@
 package models;
 
-import java.sql.Date;
 
 public class Funcionario extends Pessoa {
     private double salario;
@@ -62,10 +61,11 @@ public class Funcionario extends Pessoa {
     public void setDataFim(String dataFim) {
         this.dataFim = dataFim;
     }
-    public int anoEmpregado() {
-            Date data = new Date();
-        if(this.dataFim == null){
+    // public int anoEmpregado() {
+    //     if(this.dataFim == null){
 
-        }
-    }
+    //     }else{
+           
+    //     }
+    // }
 }
