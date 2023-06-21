@@ -6,7 +6,7 @@ import java.util.List;
 public class Funcionarios {
     private List<Funcionario> funcionarios;
 
-    Funcionarios() {
+    public Funcionarios() {
         this.funcionarios = new ArrayList<Funcionario>();
 
     }

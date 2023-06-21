@@ -59,7 +59,7 @@ public class Funcionario extends Pessoa {
         this.dataFim = dataFim;
     }
 
-    public int anoEmpregado() {
+    public int anoEmpregado(int ano) {
         if (this.dataFim == null) {
             return 0;
         } else {
@@ -67,7 +67,8 @@ public class Funcionario extends Pessoa {
             String[] vetDataInicio = this.getDataInicio().split("/");
             String anoInicio = vetDataInicio[2];
             String anoFim = vetDataFim[2];
-            return Integer.parseInt(anoFim) + Integer.parseInt(anoInicio);
+            int anoEmpregado = Integer.parseInt(anoFim) + Integer.parseInt(anoInicio);
+            return anoEmpregado;
         }
     }
 }
