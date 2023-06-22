@@ -1,7 +1,9 @@
-package models;
+package vetores;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import models.Usuario;
 
 public class Usuarios {
     List<Usuario> usuarios = null;

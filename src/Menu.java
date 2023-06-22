@@ -2,9 +2,9 @@
 import java.util.Scanner;
 
 import models.Funcionario;
-import models.Funcionarios;
 import models.Usuario;
-import models.Usuarios;
+import vetores.Funcionarios;
+import vetores.Usuarios;
 
 public class Menu {
     private static Funcionarios funcionarios = new Funcionarios();
@@ -13,13 +13,13 @@ public class Menu {
     private static Usuarios usuarios = new Usuarios();
     private static Scanner scanner = new Scanner(System.in);
     static boolean status = true;
+    static int opcao;
 
     public static void main(String[] args) {
         exibirMenu();
     }
 
-    private static void exibirMenu() {
-        int opcao;
+    private static void exibirMenu() { 
         do {
             System.out.println("=== Menu ===");
             System.out.println("1. Adicionar Funcionário");
@@ -45,7 +45,7 @@ public class Menu {
                     break;
                 case 3:
                     if (status == true) {
-                        listarFuncionariosPorSetor();
+                        Funcionarios();
                     }
                     break;
                 case 4:
@@ -76,17 +76,51 @@ public class Menu {
         String usuario = scanner.next();
         System.out.print("Digite a senha: ");
         int senha = scanner.nextInt();
-        if(usuarios.login(usuario, senha)){
-            status = usuarios.login(usuario, senha);
-        }else{
+        if (usuarios.login(usuario, senha, i++)) {
+            status = usuarios.login(usuario, senha, i++);
+        } else {
             System.err.println("Usuario ou senha errado");
         }
     }
 
     private static void atualizarSalarioFuncionario() {
+        System.out.println("=== Atualizar Salário de um Funcionário ===");
+        System.out.print("Digite a matricula do funcionário: ");
+        int matricula = scanner.nextInt();
+        if (funcionarios.getFuncionarios(matricula) != null) {
+            System.out.print("Digite o percentual de aumento: ");
+            int percentual = scanner.nextInt();
+            funcionarios.getFuncionarios(matricula).atualizarSalario(percentual);
+            System.out.println("Salário atualizado com sucesso!\n");
+            exibirMenu();
+        }
     }
 
-    private static void listarFuncionariosPorSetor() {
+    private static void Funcionarios() {
+        System.out.println("==Escolha a opção==");
+        System.out.println("1. Listar todos funcionarios");
+        System.out.println("2. Listar funcionarios por setor");
+        System.out.println("3. Listar funcionario por matricula");
+        System.out.println("4. Listar funcionario pela media");
+        opcao = scanner.nextInt();
+        switch (opcao) {
+            case 1:
+                funcionarios.listartodosFuncionarios();
+                break;
+            case 2:
+                System.out.print("Digite o setor: ");
+                String setor = scanner.nextLine();
+                funcionarios.listarPorSetor(setor);
+                break;
+            case 3:
+            System.out.print("Digite a Matricula do Funcionario: ");
+                int matricula = scanner.nextInt();
+                
+                break;
+            default:
+                break;
+        }
+
     }
 
     private static void calcularMediaSalarios() {
@@ -126,7 +160,8 @@ public class Menu {
         System.out.println("Usuário: ");
         usuario.setUsuario(scanner.nextLine());
         System.out.println("Senha: ");
-        usuario.setSenha(scanner.nextLine());
+        usuario.setSenha(scanner.nextInt());
+        usuarios.setUsuarios(usuario);
         System.out.println("Usuário adicionado com sucesso!\n");
         exibirMenu();
     }

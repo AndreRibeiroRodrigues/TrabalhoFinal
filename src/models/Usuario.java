@@ -19,10 +19,10 @@ public class Usuario extends Pessoa {
     public void setSenha(int senha) {
         this.senha = senha;
     }
+
     @Override
     public String toString() {
-        return super.toString();
+        return super.toString() + ";" + usuario + ";" + senha;
     }
-    
 
 }
