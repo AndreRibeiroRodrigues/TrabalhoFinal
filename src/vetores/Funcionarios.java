@@ -1,7 +1,11 @@
 package vetores;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import models.Funcionario;
 
@@ -23,7 +27,7 @@ public class Funcionarios {
         return null;
     }
 
-    public void setPessoas(Funcionario funcionario) {
+    public void setFuncionario(Funcionario funcionario) {
         this.funcionarios.add(funcionario);
     }
 
@@ -66,6 +70,45 @@ public class Funcionarios {
     public void listartodosFuncionarios() {
         for (int i = 0; i < funcionarios.size(); i++) {
             System.out.println(funcionarios.get(i).toStringListagem());
+        }
+    }
+
+    public void escreverArquivo() {
+        PrintWriter pw = null;
+        try {
+            FileWriter out = new FileWriter("funcionarios.csv");
+            pw = new PrintWriter(out);
+            for (int i = 0; i < funcionarios.size(); i++) {
+                pw.println(this.funcionarios.get(i).toString());
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            pw.close();
+        }
+
+    }
+
+    public void lerArquivo(String path) {
+        Scanner arquivoProfessorR = null;
+        try {
+            FileReader nomeArq = new FileReader(path);
+            arquivoProfessorR = new Scanner(nomeArq);
+
+            while (arquivoProfessorR.hasNext()) {
+                String linha[] = arquivoProfessorR.nextLine().split(";");
+                Funcionario funcionario = new Funcionario(
+                    Integer.parseInt(linha[0]), 
+                    linha[1],
+                        Integer.parseInt(linha[2]), 
+                        linha[3].charAt(0), Double.parseDouble(linha[4]), linha[5],
+                        linha[6], linha[7]);
+                setFuncionario(funcionario);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            arquivoProfessorR.close();
         }
     }
 

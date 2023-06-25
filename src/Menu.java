@@ -16,19 +16,19 @@ public class Menu {
     static int opcao;
 
     public static void main(String[] args) {
+        usuarios.lerArquivo("usuarios.csv");
         exibirMenu();
     }
 
-    private static void exibirMenu() { 
+    private static void exibirMenu() {
         do {
             System.out.println("=== Menu ===");
-            System.out.println("1. Adicionar Funcionário");
-            System.out.println("2. Calcular Média de Salários");
-            System.out.println("3. Listar Funcionários por Setor");
-            System.out.println("4. Atualizar Salário de um Funcionário");
-            System.out.println("5. Adicionar Usuário");
-            System.out.println("6. Login");
-            System.out.println("7. Sair");
+            System.out.println("1. Adicionar/demitir Funcionário");
+            System.out.println("2. Listas funcionários");
+            System.out.println("3. Atualizar salário");
+            System.out.println("4. Adicionar Usuário");
+            System.out.println("5. Login");
+            System.out.println("6. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
 
@@ -36,39 +36,51 @@ public class Menu {
                 case 1:
                     if (status == true) {
                         adicionarFuncionario();
+                        exibirMenu();
+                    } else {
+                        System.out.println("Voce precisa estar logado para utilozar esta função");
+                        exibirMenu();
                     }
                     break;
                 case 2:
                     if (status == true) {
-                        calcularMediaSalarios();
+                        Funcionarios();
+                        exibirMenu();
+                    } else {
+                        System.out.println("Voce precisa estar logado para utilozar esta função");
+                        exibirMenu();
                     }
                     break;
                 case 3:
                     if (status == true) {
-                        Funcionarios();
+                        atualizarSalarioFuncionario();
+                        exibirMenu();
+                    } else {
+                        System.out.println("Voce precisa estar logado para utilozar esta função");
+                        exibirMenu();
                     }
                     break;
                 case 4:
                     if (status == true) {
-                        atualizarSalarioFuncionario();
+                        adicionarUsuario();
+                        exibirMenu();
+                    } else {
+                        System.out.println("Voce precisa estar logado para utilozar esta função");
+                        exibirMenu();
                     }
                     break;
                 case 5:
-                    if (status == true) {
-                        adicionarUsuario();
-                    }
+                    logar();
+                    exibirMenu();
                     break;
                 case 6:
-                    logar();
-                case 7:
                     System.out.println("Saindo do programa...");
+                    usuarios.escreverArquivo();
                     break;
                 default:
                     System.out.println("Opção inválida. Por favor, escolha novamente.");
             }
         } while (opcao != 6);
-
-        scanner.close();
     }
 
     private static void logar() {
@@ -76,8 +88,10 @@ public class Menu {
         String usuario = scanner.next();
         System.out.print("Digite a senha: ");
         int senha = scanner.nextInt();
-        if (usuarios.login(usuario, senha, i++)) {
-            status = usuarios.login(usuario, senha, i++);
+        if (usuarios.login(usuario, senha)) {
+            status = usuarios.login(usuario, senha);
+            System.out.println("logado");
+            System.out.println(usuarios.login(usuario, senha));
         } else {
             System.err.println("Usuario ou senha errado");
         }
@@ -113,17 +127,14 @@ public class Menu {
                 funcionarios.listarPorSetor(setor);
                 break;
             case 3:
-            System.out.print("Digite a Matricula do Funcionario: ");
-                int matricula = scanner.nextInt();
-                
+                System.out.print("Digite a Matricula do Funcionario: ");
+                // int matricula = scanner.nextInt();
+
                 break;
             default:
                 break;
         }
 
-    }
-
-    private static void calcularMediaSalarios() {
     }
 
     private static void adicionarFuncionario() {
@@ -143,23 +154,16 @@ public class Menu {
         System.out.println("Data de Inicio");
         System.out.println("Digite dd/mm/aaaa");
         funcionario.setDataInicio(scanner.next());
-        funcionarios.setPessoas(funcionario);
+        funcionarios.setFuncionario(funcionario);
         System.out.println("Funcionário adicionado com sucesso!\n");
         exibirMenu();
     }
 
     private static void adicionarUsuario() {
         System.out.println("=== Adicionar Usuário ===");
-        System.out.println("Nome: ");
-        usuario.setNome(scanner.nextLine());
-        scanner.nextLine();
-        System.out.println("Idade: ");
-        usuario.setIdade(scanner.nextInt());
-        System.out.println("Sexo: ");
-        usuario.setSexo(scanner.next().charAt(0));
-        System.out.println("Usuário: ");
-        usuario.setUsuario(scanner.nextLine());
-        System.out.println("Senha: ");
+        System.out.print("Usuário: ");
+        usuario.setUsuario(scanner.next());
+        System.out.print("Senha: ");
         usuario.setSenha(scanner.nextInt());
         usuarios.setUsuarios(usuario);
         System.out.println("Usuário adicionado com sucesso!\n");

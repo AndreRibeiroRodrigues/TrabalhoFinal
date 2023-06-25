@@ -2,17 +2,18 @@ package models;
 
 public class Funcionario extends Pessoa {
     private int matricula;
-
     private double salario;
     private String setor;
     private String dataInicio;
     private String dataFim;
 
-    public Funcionario(String nome, int idade, char sexo, int matricula, double salario, String setor) {
+    public Funcionario(int matricula, String nome, int idade, char sexo , double salario, String setor, String dataInicio, String dataFim) {
         super(nome, idade, sexo);
         this.matricula = matricula;
         this.salario = salario;
         this.setor = setor;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
     }
 
     public Funcionario() {
@@ -77,12 +78,13 @@ public class Funcionario extends Pessoa {
             return anoEmpregado;
         }
     }
-    
+
     public String toStringListagem() {
-        return super.toStringListagem()+ " salario: " + salario;
+        return super.toStringListagem() + " salario: " + salario;
     }
+
     @Override
     public String toString() {
-        return super.toString() + "" + salario;
+        return matricula + ";" + super.toString() + ";" + salario + ";" + setor + ";" + dataInicio + ";" + dataFim;
     }
 }

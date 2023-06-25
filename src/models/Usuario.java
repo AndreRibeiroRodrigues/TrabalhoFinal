@@ -1,8 +1,17 @@
 package models;
 
-public class Usuario extends Pessoa {
+public class Usuario{
     private String usuario;
     private int senha;
+
+    public Usuario(String usuario, int senha) {
+        this.usuario = usuario;
+        this.senha = senha;
+    }
+    public Usuario() {
+        this.usuario = "";
+        this.senha = 0;
+    }
 
     public String getUsuario() {
         return usuario;
@@ -22,7 +31,7 @@ public class Usuario extends Pessoa {
 
     @Override
     public String toString() {
-        return super.toString() + ";" + usuario + ";" + senha;
+        return usuario + ";" + senha;
     }
 
 }
