@@ -47,7 +47,7 @@ public class Funcionario extends Pessoa {
 
     public void atualizarSalario(double perc) {
         double novoS = this.salario * (1 * perc / 100);
-        this.salario = novoS;
+        this.salario = this.salario + novoS;
     }
 
     public String getDataInicio() {
@@ -80,7 +80,7 @@ public class Funcionario extends Pessoa {
     }
 
     public String toStringListagem() {
-        return super.toStringListagem() + " salario: " + salario;
+        return super.toStringListagem() + " salario: " + salario+ "DataInicio: "+ dataInicio;
     }
 
     @Override

@@ -41,10 +41,20 @@ public class Funcionarios {
         return media;
     }
 
+    public void demitirFuncionario(int matricula, String dataFim) {
+        for (int i = 0; i < funcionarios.size(); i++) {
+            if (funcionarios.get(i).getMatricula() == matricula) {
+                this.funcionarios.get(i).setDataFim(dataFim);
+            }
+        }
+
+    }
+
     public void listarSalarios() {
 
         for (int i = 0; i < this.funcionarios.size(); i++) {
-            if (this.funcionarios.get(i).getSalario() == this.media()) {
+            if (this.funcionarios.get(i).getSalario() == this.media()
+                    && this.funcionarios.get(i).getDataFim() != null) {
                 this.funcionarios.get(i).toString();
             }
         }
@@ -53,23 +63,28 @@ public class Funcionarios {
 
     public void listarPorSetor(String setor) {
         for (int i = 0; i < this.funcionarios.size(); i++) {
-            if (this.funcionarios.get(i).getSetor().equals(setor)) {
-                this.funcionarios.get(i).toStringListagem();
+            if (this.funcionarios.get(i).getSetor().equals(setor) && this.funcionarios.get(i).getDataFim() != null) {
+                System.out.println(this.funcionarios.get(i).toStringListagem());
             }
         }
     }
 
     public void listarPorMatricula(int matricula) {
         for (int i = 0; i < this.funcionarios.size(); i++) {
-            if (this.funcionarios.get(i).getMatricula() == matricula) {
-                this.funcionarios.get(i).toStringListagem();
+            if (this.funcionarios.get(i).getMatricula() == matricula && this.funcionarios.get(i).getDataFim() != null) {
+                System.out.println(this.funcionarios.get(i).toStringListagem());
+            } else if (this.funcionarios.get(i).getMatricula() == matricula
+                    && this.funcionarios.get(i).getDataFim() == null) {
+                System.out.println("O funcionario nao trabalha mais na empresa.");
             }
         }
     }
 
     public void listartodosFuncionarios() {
         for (int i = 0; i < funcionarios.size(); i++) {
-            System.out.println(funcionarios.get(i).toStringListagem());
+            
+                System.out.println(this.funcionarios.get(i).toStringListagem());
+            
         }
     }
 
@@ -97,11 +112,8 @@ public class Funcionarios {
 
             while (arquivoProfessorR.hasNext()) {
                 String linha[] = arquivoProfessorR.nextLine().split(";");
-                Funcionario funcionario = new Funcionario(
-                    Integer.parseInt(linha[0]), 
-                    linha[1],
-                        Integer.parseInt(linha[2]), 
-                        linha[3].charAt(0), Double.parseDouble(linha[4]), linha[5],
+                Funcionario funcionario = new Funcionario(Integer.parseInt(linha[0]), linha[1],
+                        Integer.parseInt(linha[2]), linha[3].charAt(0), Double.parseDouble(linha[4]), linha[5],
                         linha[6], linha[7]);
                 setFuncionario(funcionario);
             }

@@ -12,11 +12,12 @@ public class Menu {
     private static Usuario usuario = new Usuario();
     private static Usuarios usuarios = new Usuarios();
     private static Scanner scanner = new Scanner(System.in);
-    static boolean status = true;
+    static boolean status = false;
     static int opcao;
 
     public static void main(String[] args) {
         usuarios.lerArquivo("usuarios.csv");
+        funcionarios.lerArquivo("funcionarios.csv");
         exibirMenu();
     }
 
@@ -76,6 +77,7 @@ public class Menu {
                 case 6:
                     System.out.println("Saindo do programa...");
                     usuarios.escreverArquivo();
+                    funcionarios.escreverArquivo();
                     break;
                 default:
                     System.out.println("Opção inválida. Por favor, escolha novamente.");
@@ -123,6 +125,7 @@ public class Menu {
                 break;
             case 2:
                 System.out.print("Digite o setor: ");
+                scanner.nextLine();
                 String setor = scanner.nextLine();
                 funcionarios.listarPorSetor(setor);
                 break;
@@ -138,25 +141,40 @@ public class Menu {
     }
 
     private static void adicionarFuncionario() {
-        System.out.println("=== Adicionar Funcionário ===");
-        System.out.println("Nome: ");
-        funcionario.setNome(scanner.nextLine());
-        System.out.println("Idade: ");
-        funcionario.setIdade(scanner.nextInt());
-        System.out.println("Sexo: ");
-        funcionario.setSexo(scanner.next().charAt(0));
-        scanner.nextLine();
-        System.out.println("Salário: ");
-        funcionario.setSalario(scanner.nextDouble());
-        scanner.nextLine();
-        System.out.println("Setor: ");
-        funcionario.setSetor(scanner.nextLine());
-        System.out.println("Data de Inicio");
-        System.out.println("Digite dd/mm/aaaa");
-        funcionario.setDataInicio(scanner.next());
-        funcionarios.setFuncionario(funcionario);
-        System.out.println("Funcionário adicionado com sucesso!\n");
-        exibirMenu();
+        System.out.println("Voce deseja contratar ou demitir?");
+        System.out.println("1.Demitir \n2.contratar");
+        opcao = scanner.nextInt();
+        if (opcao == 1) {
+            System.out.print("Digite a matricula do funcionario: ");
+            int mat = scanner.nextInt();
+            System.out.println("Digite a data de demição:");
+            System.out.println("Formato: dd/mm/aaaa");
+            String datafim = scanner.next();
+            funcionarios.demitirFuncionario(mat, datafim);
+        } else if (opcao == 2) {
+            System.out.println("=== Adicionar Funcionário ===");
+            System.out.print("matricula: ");
+            funcionario.setMatricula(scanner.nextInt());
+            scanner.nextLine();
+            System.out.print("Nome: ");
+            funcionario.setNome(scanner.nextLine());
+            System.out.print("Idade: ");
+            funcionario.setIdade(scanner.nextInt());
+            System.out.print("Sexo: ");
+            funcionario.setSexo(scanner.next().toUpperCase().charAt(0));
+            scanner.nextLine();
+            System.out.print("Salário: ");
+            funcionario.setSalario(scanner.nextDouble());
+            scanner.nextLine();
+            System.out.print("Setor: ");
+            funcionario.setSetor(scanner.nextLine());
+            System.out.println("Data de Inicio");
+            System.out.println("Digite dd/mm/aaaa");
+            funcionario.setDataInicio(scanner.next());
+            funcionarios.setFuncionario(funcionario);
+            System.out.println("Funcionário adicionado com sucesso!\n");
+        }
+
     }
 
     private static void adicionarUsuario() {
@@ -167,6 +185,5 @@ public class Menu {
         usuario.setSenha(scanner.nextInt());
         usuarios.setUsuarios(usuario);
         System.out.println("Usuário adicionado com sucesso!\n");
-        exibirMenu();
     }
 }
