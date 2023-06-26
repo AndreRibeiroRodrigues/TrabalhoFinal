@@ -117,7 +117,7 @@ public class Menu {
         System.out.println("1. Listar todos funcionarios");
         System.out.println("2. Listar funcionarios por setor");
         System.out.println("3. Listar funcionario por matricula");
-        System.out.println("4. Listar funcionario pela media");
+        System.out.println("4. Listar funcionario acima da media");
         opcao = scanner.nextInt();
         switch (opcao) {
             case 1:
@@ -131,9 +131,11 @@ public class Menu {
                 break;
             case 3:
                 System.out.print("Digite a Matricula do Funcionario: ");
-                // int matricula = scanner.nextInt();
-
+                int matricula = scanner.nextInt();
+                funcionarios.listarPorMatricula(matricula);
                 break;
+            case 4:
+            break;
             default:
                 break;
         }

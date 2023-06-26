@@ -53,9 +53,9 @@ public class Funcionarios {
     public void listarSalarios() {
 
         for (int i = 0; i < this.funcionarios.size(); i++) {
-            if (this.funcionarios.get(i).getSalario() == this.media()
+            if (this.funcionarios.get(i).getSalario() >= media()
                     && this.funcionarios.get(i).getDataFim() != null) {
-                this.funcionarios.get(i).toString();
+                System.out.println(this.funcionarios.get(i).toStringListagem());
             }
         }
 
@@ -63,7 +63,7 @@ public class Funcionarios {
 
     public void listarPorSetor(String setor) {
         for (int i = 0; i < this.funcionarios.size(); i++) {
-            if (this.funcionarios.get(i).getSetor().equals(setor) && this.funcionarios.get(i).getDataFim() != null) {
+            if (this.funcionarios.get(i).getSetor().equals(setor) && this.funcionarios.get(i).getDataFim() == null) {
                 System.out.println(this.funcionarios.get(i).toStringListagem());
             }
         }
@@ -71,10 +71,10 @@ public class Funcionarios {
 
     public void listarPorMatricula(int matricula) {
         for (int i = 0; i < this.funcionarios.size(); i++) {
-            if (this.funcionarios.get(i).getMatricula() == matricula && this.funcionarios.get(i).getDataFim() != null) {
+            if (this.funcionarios.get(i).getMatricula() == matricula && this.funcionarios.get(i).getDataFim() == null) {
                 System.out.println(this.funcionarios.get(i).toStringListagem());
             } else if (this.funcionarios.get(i).getMatricula() == matricula
-                    && this.funcionarios.get(i).getDataFim() == null) {
+                    && this.funcionarios.get(i).getDataFim() != null) {
                 System.out.println("O funcionario nao trabalha mais na empresa.");
             }
         }
@@ -82,9 +82,7 @@ public class Funcionarios {
 
     public void listartodosFuncionarios() {
         for (int i = 0; i < funcionarios.size(); i++) {
-            
-                System.out.println(this.funcionarios.get(i).toStringListagem());
-            
+            System.out.println(this.funcionarios.get(i).toStringListagem());
         }
     }
 
