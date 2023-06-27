@@ -1,18 +1,19 @@
-## Getting Started
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+# Trabalho final CRUD
 
-## Folder Structure
+Um programa de console para fimular um programa de contratação tendo metodos para cadastrar um funcionario(create), demitir funcionario(delete), atualizar salario(Update) e buscar dados dos funcionarios ja cadastrados(read).
 
-The workspace contains two folders by default, where:
+Nesse trabalho foi utilizado o basico de programação orientada a objeto para para performar as classes pessoa, funcionario e a classe usuario que foi uilizada para adicioar uma opção de login, classes para manipulação dos vetores e os metodos de leitura e escrita dos arquivos.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## Funcionalidades
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+- adicionar e deletar um funcionario
+- listar os funcionarios cadastrados
+- atualizar os salarios dos funcionarios
+- ler e escrever um arquivo csv após a utilização do programa par aa permanencia dos dados
 
-## Dependency Management
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Autores
+
+- [@AndreRibeiro](https://www.github.com/AndreRibeiroRodrigues)
