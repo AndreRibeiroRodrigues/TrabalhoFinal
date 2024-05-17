@@ -14,6 +14,6 @@ Nesse trabalho foi utilizado o basico de programação orientada a objeto para p
 - ler e escrever um arquivo csv após a utilização do programa par aa permanencia dos dados
 
 
-## Autores
+## Autor
 
 - [@AndreRibeiro](https://www.github.com/AndreRibeiroRodrigues)
